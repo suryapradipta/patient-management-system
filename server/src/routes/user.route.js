@@ -43,8 +43,6 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
-  console.log(username, password);
-
   try {
     if (!username || !password) {
       return res

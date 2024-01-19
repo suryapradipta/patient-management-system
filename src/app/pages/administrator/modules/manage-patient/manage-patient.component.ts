@@ -3,7 +3,7 @@ import {
   NotificationService,
   PatientService
 } from "../../../../shared/services";
-import {Patient} from "../../../../shared/models/patient.model";
+import {Patient} from "../../../../shared/models";
 import {Subject} from 'rxjs';
 import {Router} from "@angular/router";
 import Swal from "sweetalert2";
@@ -26,8 +26,6 @@ export class ManagePatientComponent implements OnInit, AfterViewInit, OnDestroy 
 
 
   ngOnInit(): void {
-
-
     this.getPatients();
   }
 
@@ -66,7 +64,7 @@ export class ManagePatientComponent implements OnInit, AfterViewInit, OnDestroy 
       if (result.isConfirmed) {
         Swal.fire(
           'Deleted!',
-          'Product have been successfully deleted.',
+          'Patient have been successfully deleted.',
           'success'
         );
         this.patientService.deletePatient(id).subscribe(() => {
@@ -93,5 +91,9 @@ export class ManagePatientComponent implements OnInit, AfterViewInit, OnDestroy 
 
   editPatient(patient: Patient) {
     this.router.navigate(['administrator/patients/edit', patient._id]);
+  }
+
+  viewPatient(patient: Patient) {
+    this.router.navigate(['administrator/patients/view', patient._id]);
   }
 }

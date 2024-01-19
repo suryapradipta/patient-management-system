@@ -25,8 +25,10 @@ mongoose
 
 const patientRoutes = require('./src/routes/patient.route');
 const userRoutes = require('./src/routes/user.route');
+const appointmentRoutes = require('./src/routes/appointment.route');
 
 app.use('/api/v1/patients', patientRoutes);
+app.use('/api/v1/appointments', appointmentRoutes);
 app.use('/api/v1/users', userRoutes);
 
 app.listen(PORT, () => {

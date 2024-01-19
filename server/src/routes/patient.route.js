@@ -3,7 +3,6 @@ const shortid = require('shortid');
 const router = express.Router();
 const Patient = require('../models/patient.model');
 const authMiddleware = require('../middleware/auth.middleware');
-const mongoose = require("mongoose");
 
 function isValidDateFormat(dateString) {
   const regex = /^\d{4}-\d{2}-\d{2}$/;
@@ -15,7 +14,7 @@ function isValidGender(gender) {
   return validGenders.includes(gender);
 }
 
-router.post('/', async (req, res) => {
+router.post('/', authMiddleware, async (req, res) => {
   try {
 
     const {name, dateOfBirth, gender, address, contactInfo} = req.body;
@@ -42,7 +41,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
+router.get('/', authMiddleware, async (req, res) => {
   try {
     const patients = await Patient.find();
     res.json(patients);
@@ -66,7 +65,7 @@ router.get('/:id', authMiddleware, async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', authMiddleware, async (req, res) => {
   try {
 
     const {name, dateOfBirth, gender, address, contactInfo} = req.body;
@@ -95,7 +94,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authMiddleware, async (req, res) => {
   try {
     const patient = await Patient.findByIdAndDelete(req.params.id);
 

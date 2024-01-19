@@ -26,10 +26,10 @@
           <tr>
             <th>Patient ID</th>
             <th>Name</th>
-            <th>Date of Birth</th>
+            <th>DOB</th>
             <th>Gender</th>
             <th>Address</th>
-            <th>Contact Info</th>
+            <th>Contact</th>
                 <th>Actions</th>
           </tr>
           </thead>
@@ -45,10 +45,14 @@
                   <button
                     type="button"
                     class="inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
+                    (click)="viewPatient(patient)">View</button>
+                  <button
+                    type="button"
+                    class="mx-2 inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
                     (click)="editPatient(patient)">Edit</button>
                   <button
                     type="button"
-                    class="inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
+                    class=" inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
                     (click)="deletePatient(patient._id)">Delete</button>
                 </td>
           </tr>

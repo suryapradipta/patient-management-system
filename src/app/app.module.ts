@@ -25,6 +25,8 @@ import {
 } from './pages/administrator/modules/manage-patient/manage-patient.component';
 import {DataTablesModule} from "angular-datatables";
 import { PatientDetailsComponent } from './pages/administrator/modules/manage-patient/patient-details/patient-details.component';
+import { ManageAppointmentComponent } from './pages/administrator/modules/manage-appointment/manage-appointment.component';
+import { AddEditPatientComponent } from './pages/administrator/modules/manage-patient/add-edit-patient/add-edit-patient.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { PatientDetailsComponent } from './pages/administrator/modules/manage-pa
     DesktopSidebarComponent,
     ManagePatientComponent,
     PatientDetailsComponent,
+    ManageAppointmentComponent,
+    AddEditPatientComponent,
   ],
   imports: [
     BrowserModule,
