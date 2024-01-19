@@ -1,0 +1,185 @@
+<div class="bg-white">
+  <div class="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <form
+        #patientForm="ngForm"
+        (submit)="savePatient(patientForm)"
+        class="space-y-8 divide-y divide-gray-200"
+      >
+        <div class="space-y-8 divide-y divide-gray-200">
+          <div>
+            <div>
+              <h3 class="text-lg font-medium leading-6 text-gray-900">
+                {{ patient._id ? 'Edit' : 'Add' }} Patient
+              </h3>
+              <p class="mt-1 text-sm text-gray-500">
+                Ensure that the information is accurate and up-to-date
+                before
+                saving.
+              </p>
+            </div>
+
+            <div
+              class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+              <div class="sm:col-span-3">
+                <label
+                  for="name"
+                  class="block text-sm font-medium text-gray-700"
+                >Name</label
+                >
+                <div class="mt-1">
+                  <input
+                    [(ngModel)]="patient.name"
+                    required
+                    #name="ngModel"
+                    type="text"
+                    name="name"
+                    id="name"
+                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+                <div
+                  *ngIf="name.invalid && (name.dirty || name.touched)"
+                  class="mt-2 text-sm text-red-600"
+                >
+                  <div *ngIf="name.errors?.['required']">Name is
+                    required.
+                  </div>
+                </div>
+              </div>
+
+              <div class="sm:col-span-3">
+                <label
+                  for="dateOfBirth"
+                  class="block text-sm font-medium text-gray-700"
+                >Date of Birth</label
+                >
+                <div class="mt-1">
+                  <input
+                    [(ngModel)]="patient.dateOfBirth"
+                    required
+                    #dateOfBirth="ngModel"
+                    type="date"
+                    name="dateOfBirth"
+                    id="dateOfBirth"
+                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+                <div
+                  *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)"
+                  class="mt-2 text-sm text-red-600"
+                >
+                  <div *ngIf="dateOfBirth.errors?.['required']">Date of
+                    Birth is required.
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="sm:col-span-6">
+                <label
+                  for="address"
+                  class="block text-sm font-medium text-gray-700"
+                >Address</label
+                >
+                <div class="mt-1">
+                  <textarea
+                    [(ngModel)]="patient.address"
+                    required
+                    #address="ngModel"
+                    id="address"
+                    name="address"
+                    rows="3"
+                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  ></textarea>
+                </div>
+                <div
+                  *ngIf="
+                    address.invalid &&
+                    (address.dirty || address.touched)
+                  "
+                  class="mt-2 text-sm text-red-600"
+                >
+                  <div *ngIf="address.errors?.['required']">
+                    Address is required.
+                  </div>
+                </div>
+              </div>
+
+              <div class="sm:col-span-3">
+                <label
+                  for="gender"
+                  class="block text-sm font-medium text-gray-700"
+                >Gender</label
+                >
+                <div class="mt-1">
+                  <select
+                    id="gender"
+                    name="gender"
+                    required
+                    [(ngModel)]="patient.gender"
+                    #gender="ngModel"
+                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  >
+                    <option value="" disabled>Select gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div
+                  *ngIf="
+                    gender.invalid && (gender.dirty || gender.touched)
+                  "
+                  class="mt-2 text-sm text-red-600"
+                >
+                  <div *ngIf="gender.errors?.['required']">
+                    Gender is required.
+                  </div>
+                </div>
+              </div>
+
+              <div class="sm:col-span-3">
+                <label
+                  for="contactInfo"
+                  class="block text-sm font-medium text-gray-700"
+                >Contact Information</label
+                >
+                <div class="mt-1">
+                  <input
+                    [(ngModel)]="patient.contactInfo"
+                    required
+                    #contactInfo="ngModel"
+                    type="text"
+                    name="contactInfo"
+                    id="contactInfo"
+                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+                <div
+                  *ngIf="contactInfo.invalid && (contactInfo.dirty || contactInfo.touched)"
+                  class="mt-2 text-sm text-red-600"
+                >
+                  <div *ngIf="contactInfo.errors?.['required']">Contact
+                    information is required.
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-5">
+          <button
+            type="submit"
+            class="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

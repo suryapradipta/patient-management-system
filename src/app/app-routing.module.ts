@@ -9,6 +9,9 @@ import {
 import {
   ManagePatientComponent
 } from "./pages/administrator/modules/manage-patient/manage-patient.component";
+import {
+  PatientDetailsComponent
+} from "./pages/administrator/modules/manage-patient/patient-details/patient-details.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +23,8 @@ const routes: Routes = [
     canActivate: [AdminGuard],
     children: [
       { path: 'manage-patient', component: ManagePatientComponent },
+      { path: 'patients/add', component: PatientDetailsComponent },
+      { path: 'patients/edit/:id', component: PatientDetailsComponent },
     ],
   },
 ];
