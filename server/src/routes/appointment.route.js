@@ -37,5 +37,13 @@ router.patch('/:id', async (req, res) => {
   }
 });
 
+router.get('/report/all', async (req, res) => {
+  try {
+    const appointments = await Appointment.find().populate('patientId');
+    res.json(appointments);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching appointments' });
+  }
+});
 
 module.exports = router;
