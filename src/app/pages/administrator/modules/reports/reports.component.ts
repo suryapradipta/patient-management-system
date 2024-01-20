@@ -12,12 +12,9 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
   appointments: Appointment[] = [];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
-<<<<<<< HEAD
   fromDate: Date;
   toDate: Date;
   filteredAppointments: Appointment[] = [];
-=======
->>>>>>> ecc12e735e65ac496e5bc0e3ff6dd51afe6675dc
 
   constructor(private appointmentService: AppointmentService) {}
 
@@ -44,10 +41,7 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.appointmentService.getAppointmentsReport().subscribe(
       (data: Appointment[]) => {
         this.appointments = data;
-<<<<<<< HEAD
         this.filteredAppointments = [...this.appointments];
-=======
->>>>>>> ecc12e735e65ac496e5bc0e3ff6dd51afe6675dc
         // @ts-ignore
         this.dtTrigger.next();
       },
@@ -56,7 +50,6 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     );
   }
-<<<<<<< HEAD
 
   filterAppointments(): void {
 
@@ -74,6 +67,4 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
   }
-=======
->>>>>>> ecc12e735e65ac496e5bc0e3ff6dd51afe6675dc
 }
