@@ -15,6 +15,9 @@ import {
 import {
   AddEditPatientComponent
 } from "./pages/administrator/modules/manage-patient/add-edit-patient/add-edit-patient.component";
+import {
+  ReportsComponent
+} from "./pages/administrator/modules/reports/reports.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -29,7 +32,7 @@ const routes: Routes = [
       { path: 'patients/add', component: AddEditPatientComponent },
       { path: 'patients/edit/:id', component: AddEditPatientComponent },
       { path: 'patients/view/:id', component: PatientDetailsComponent },
-
+      { path: 'reports', component: ReportsComponent },
     ],
   },
 ];

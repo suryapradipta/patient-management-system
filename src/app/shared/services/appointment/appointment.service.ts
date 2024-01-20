@@ -25,4 +25,9 @@ export class AppointmentService {
   cancelAppointment(appointmentId: string): Observable<any> {
     return this.http.patch<any>(`${this.apiUrl}/${appointmentId}`, { status: 'Cancelled' });
   }
+
+  getAppointmentsReport(): Observable<Appointment[]> {
+    const url = `${this.apiUrl}/report/all`;
+    return this.http.get<Appointment[]>(url);
+  }
 }
