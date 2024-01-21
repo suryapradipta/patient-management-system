@@ -30,7 +30,8 @@ router.post('/register', async (req, res) => {
     const newUser = new User({
       username,
       password: hashedPassword,
-    role});
+      role,
+    });
     await newUser.save();
 
     res.status(201).json({ message: 'User registered successfully' });
@@ -58,7 +59,7 @@ router.post('/login', async (req, res) => {
 
     const user = await User.findOne({ username });
 
-    if (!user || !await bcrypt.compare(password, user.password)) {
+    if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
@@ -86,6 +87,5 @@ router.post('/login', async (req, res) => {
 router.get('/current-user', authMiddleware, (req, res) => {
   res.json(req.user);
 });
-
 
 module.exports = router;

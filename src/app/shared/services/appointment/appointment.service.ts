@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Appointment} from "../../models/appointment.model";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Appointment } from '../../models/appointment.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AppointmentService {
-
   private apiUrl = 'http://localhost:3000/api/v1/appointments';
 
   constructor(private http: HttpClient) {}
@@ -23,7 +22,9 @@ export class AppointmentService {
   }
 
   cancelAppointment(appointmentId: string): Observable<any> {
-    return this.http.patch<any>(`${this.apiUrl}/${appointmentId}`, { status: 'Cancelled' });
+    return this.http.patch<any>(`${this.apiUrl}/${appointmentId}`, {
+      status: 'Cancelled',
+    });
   }
 
   getAppointmentsReport(): Observable<Appointment[]> {

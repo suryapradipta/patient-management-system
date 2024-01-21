@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import {AuthService} from "../../../../shared/services";
-import {Router} from "@angular/router";
-import Swal from "sweetalert2";
+import { AuthService } from '../../../../shared/services';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-desktop-navbar',
   templateUrl: './desktop-navbar.component.html',
-  styleUrls: ['./desktop-navbar.component.css']
+  styleUrls: ['./desktop-navbar.component.css'],
 })
 export class DesktopNavbarComponent {
   pages = [
@@ -33,8 +33,11 @@ export class DesktopNavbarComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.authService.logOut();
-        this.router.navigate(['/']).then(r =>
-          Swal.fire('Log out!', 'You have been logged out.', 'success'));
+        this.router
+          .navigate(['/'])
+          .then((r) =>
+            Swal.fire('Log out!', 'You have been logged out.', 'success')
+          );
       }
     });
   }

@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/shared/services';
+import { AuthService } from '../../../../shared/services';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-desktop-sidebar',
-  templateUrl: './desktop-sidebar.component.html',
-  styleUrls: ['./desktop-sidebar.component.css'],
+  selector: 'app-mobile-sidebar',
+  templateUrl: './mobile-sidebar.component.html',
+  styleUrls: ['./mobile-sidebar.component.css'],
 })
-export class DesktopSidebarComponent {
+export class MobileSidebarComponent {
   selectedMenuItem: string = '';
 
   selectMenuItem(menuItem: string): void {

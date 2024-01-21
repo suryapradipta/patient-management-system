@@ -1,4 +1,4 @@
-import {Patient} from "./patient.model";
+import { Patient } from './patient.model';
 
 export interface Appointment {
   _id: string;

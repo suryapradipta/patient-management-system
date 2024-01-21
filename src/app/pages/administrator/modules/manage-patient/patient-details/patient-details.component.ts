@@ -1,37 +1,43 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
-import {Appointment, Patient} from "../../../../../shared/models";
-import {ActivatedRoute} from "@angular/router";
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Appointment, Patient } from '../../../../../shared/models';
+import { ActivatedRoute } from '@angular/router';
 import {
   AppointmentService,
   NotificationService,
-  PatientService
-} from "../../../../../shared/services";
-import {NgForm} from "@angular/forms";
-import {Subject} from "rxjs";
-import Swal from "sweetalert2";
-
+  PatientService,
+} from '../../../../../shared/services';
+import { NgForm } from '@angular/forms';
+import { Subject } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-patient-details',
   templateUrl: './patient-details.component.html',
-  styleUrls: ['./patient-details.component.css']
+  styleUrls: ['./patient-details.component.css'],
 })
-export class PatientDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
+export class PatientDetailsComponent
+  implements OnInit, AfterViewInit, OnDestroy
+{
   patient: Patient;
   showReviewForm = false;
   newAppointment: any = {};
   appointments: Appointment[] = [];
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject();
 
+  dtOptionsAppointment: DataTables.Settings = {};
+  dtTriggerAppointment: Subject<any> = new Subject();
+
+  dtOptionsHistory: DataTables.Settings = {};
+  dtTriggerHistory: Subject<any> = new Subject();
+
+  showAppointment = true;
+  showHistory = false;
 
   constructor(
     private route: ActivatedRoute,
     private patientService: PatientService,
     private alert: NotificationService,
     private appointmentService: AppointmentService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     const patientId = this.route.snapshot.paramMap.get('id');
@@ -39,18 +45,47 @@ export class PatientDetailsComponent implements OnInit, AfterViewInit, OnDestroy
     if (patientId) {
       this.getAppointmentsByPatient(patientId);
 
-
-      this.patientService.getPatient(patientId).subscribe((patient: Patient) => {
+      this.patientService.getPatient(patientId).subscribe(
+        (patient: Patient) => {
           this.patient = {
             ...patient,
-            dateOfBirth: new Date(patient.dateOfBirth).toISOString().split('T')[0],
+            dateOfBirth: new Date(patient.dateOfBirth)
+              .toISOString()
+              .split('T')[0],
           };
           console.log(this.patient);
         },
         (error) => {
-          console.error('Error fetching patient:', error)
-        });
+          console.error('Error fetching patient:', error);
+        }
+      );
     }
+  }
+
+  ngAfterViewInit(): void {
+    this.dtOptionsAppointment = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      searching: true,
+      responsive: true,
+    };
+
+    this.dtOptionsHistory = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      searching: true,
+      responsive: true,
+    };
+
+    // @ts-ignore
+    this.dtTriggerAppointment.next();
+    // @ts-ignore
+    this.dtTriggerHistory.next();
+  }
+
+  ngOnDestroy(): void {
+    this.dtTriggerAppointment.unsubscribe();
+    this.dtTriggerHistory.unsubscribe();
   }
 
   openReviewForm(): void {
@@ -61,7 +96,21 @@ export class PatientDetailsComponent implements OnInit, AfterViewInit, OnDestroy
     this.showReviewForm = false;
   }
 
-  scheduleAppointment(form: NgForm) {
+  showAppointmentTable(): void {
+    this.showAppointment = true;
+    this.showHistory = false;
+
+    this.getAppointmentsByPatient(this.patient._id);
+  }
+
+  showHistoryTable(): void {
+    this.showAppointment = false;
+    this.showHistory = true;
+
+    this.getAppointmentsByPatient(this.patient._id);
+  }
+
+  scheduleAppointment(form: NgForm): void {
     if (form.invalid) {
       this.alert.showErrorMessage(
         'Appointment data invalid. Please check your information.'
@@ -72,40 +121,35 @@ export class PatientDetailsComponent implements OnInit, AfterViewInit, OnDestroy
     if (this.patient._id) {
       this.newAppointment.patientId = this.patient._id;
 
-      this.appointmentService.scheduleAppointment(this.newAppointment).subscribe((response) => {
-        this.alert.showSuccessMessage(response.message);
-        this.closeReviewForm();
-        this.dtTrigger.unsubscribe();
-        this.getAppointmentsByPatient(this.patient._id);
-      });
+      this.appointmentService
+        .scheduleAppointment(this.newAppointment)
+        .subscribe((response) => {
+          this.alert.showSuccessMessage(response.message);
+          this.closeReviewForm();
+          this.dtTriggerAppointment.unsubscribe();
+          this.dtTriggerHistory.unsubscribe();
+          this.getAppointmentsByPatient(this.patient._id);
+        });
     }
   }
 
-  ngAfterViewInit(): void {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10,
-      searching: true,
-      responsive: true,
-    };
-    // @ts-ignore
-    this.dtTrigger.next();
+  getAppointmentsByPatient(patientId: string): void {
+    this.appointmentService
+      .getAppointmentsByPatient(patientId)
+      .subscribe((data: Appointment[]) => {
+        this.appointments = data;
+
+        // @ts-ignore
+        this.dtTriggerHistory.next();
+        // @ts-ignore
+        this.dtTriggerAppointment.next();
+      },
+        (error) => {
+          console.error('Error fetching appointments:', error);
+        });
   }
 
-  ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
-  }
-
-  getAppointmentsByPatient(patientId: string) {
-    this.appointmentService.getAppointmentsByPatient(patientId).subscribe((data: Appointment[]) => {
-      this.appointments = data;
-
-      // @ts-ignore
-      this.dtTrigger.next();
-    });
-  }
-
-  cancelAppointment(appointmentId: string) {
+  cancelAppointment(appointmentId: string): void {
     Swal.fire({
       title: 'Are you sure you want to cancel this appointment?',
       icon: 'warning',
@@ -116,15 +160,16 @@ export class PatientDetailsComponent implements OnInit, AfterViewInit, OnDestroy
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(
-          'Deleted!',
+          'Cancelled!',
           'Appointment have been successfully cancelled.',
           'success'
         );
-        this.appointmentService.cancelAppointment(appointmentId).subscribe(() => {
-          this.dtTrigger.unsubscribe();
-          this.getAppointmentsByPatient(this.patient._id);
-
-        },
+        this.appointmentService.cancelAppointment(appointmentId).subscribe(
+          () => {
+            this.dtTriggerAppointment.unsubscribe();
+            this.dtTriggerHistory.unsubscribe();
+            this.getAppointmentsByPatient(this.patient._id);
+          },
           (error) => {
             if (error.status === 404) {
               this.alert.showErrorMessage('Patient not found');
@@ -137,7 +182,5 @@ export class PatientDetailsComponent implements OnInit, AfterViewInit, OnDestroy
         );
       }
     });
-
-
   }
 }
