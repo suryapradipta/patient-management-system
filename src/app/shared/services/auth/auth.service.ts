@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Auth } from '../../models/auth.model';
+import { Auth } from '../../models';
 
 @Injectable({
   providedIn: 'root',
@@ -32,10 +32,5 @@ export class AuthService {
   logOut(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('currentUser');
-  }
-
-  isAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
-    return !!token;
   }
 }

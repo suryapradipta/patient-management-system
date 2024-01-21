@@ -18,6 +18,7 @@ import { PatientDetailsComponent } from './pages/administrator/modules/manage-pa
 import { AddEditPatientComponent } from './pages/administrator/modules/manage-patient/add-edit-patient/add-edit-patient.component';
 import { ReportsComponent } from './pages/administrator/modules/reports/reports.component';
 import { MobileSidebarComponent } from './pages/administrator/dashboard/mobile-sidebar/mobile-sidebar.component';
+import { HeroComponent } from './pages/patient/home/hero/hero.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MobileSidebarComponent } from './pages/administrator/dashboard/mobile-s
     AddEditPatientComponent,
     ReportsComponent,
     MobileSidebarComponent,
+    HeroComponent,
   ],
   imports: [
     BrowserModule,

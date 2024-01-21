@@ -19,7 +19,6 @@ export class PatientDetailsComponent
   implements OnInit, AfterViewInit, OnDestroy
 {
   patient: Patient;
-  showReviewForm = false;
   newAppointment: any = {};
   appointments: Appointment[] = [];
 
@@ -31,6 +30,7 @@ export class PatientDetailsComponent
 
   showAppointment = true;
   showHistory = false;
+  showReviewForm = false;
 
   constructor(
     private route: ActivatedRoute,
