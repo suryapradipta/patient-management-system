@@ -1,33 +1,23 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {HomeComponent} from './pages/patient/home/home.component';
-import {
-  DesktopNavbarComponent
-} from './pages/patient/home/desktop-navbar/desktop-navbar.component';
-import {
-  MobileNavbarComponent
-} from './pages/patient/home/mobile-navbar/mobile-navbar.component';
-import {LoginComponent} from './pages/auth/login/login.component';
-import {AuthInterceptor} from "./shared/services";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {
-  DashboardComponent
-} from './pages/administrator/dashboard/dashboard.component';
-import {
-  DesktopSidebarComponent
-} from './pages/administrator/dashboard/desktop-sidebar/desktop-sidebar.component';
-import {
-  ManagePatientComponent
-} from './pages/administrator/modules/manage-patient/manage-patient.component';
-import {DataTablesModule} from "angular-datatables";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './pages/patient/home/home.component';
+import { DesktopNavbarComponent } from './pages/patient/home/desktop-navbar/desktop-navbar.component';
+import { MobileNavbarComponent } from './pages/patient/home/mobile-navbar/mobile-navbar.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { AuthInterceptor } from './shared/services';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DashboardComponent } from './pages/administrator/dashboard/dashboard.component';
+import { DesktopSidebarComponent } from './pages/administrator/dashboard/desktop-sidebar/desktop-sidebar.component';
+import { ManagePatientComponent } from './pages/administrator/modules/manage-patient/manage-patient.component';
+import { DataTablesModule } from 'angular-datatables';
 import { PatientDetailsComponent } from './pages/administrator/modules/manage-patient/patient-details/patient-details.component';
-import { ManageAppointmentComponent } from './pages/administrator/modules/manage-appointment/manage-appointment.component';
 import { AddEditPatientComponent } from './pages/administrator/modules/manage-patient/add-edit-patient/add-edit-patient.component';
 import { ReportsComponent } from './pages/administrator/modules/reports/reports.component';
+import { MobileSidebarComponent } from './pages/administrator/dashboard/mobile-sidebar/mobile-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -40,9 +30,9 @@ import { ReportsComponent } from './pages/administrator/modules/reports/reports.
     DesktopSidebarComponent,
     ManagePatientComponent,
     PatientDetailsComponent,
-    ManageAppointmentComponent,
     AddEditPatientComponent,
     ReportsComponent,
+    MobileSidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,10 +47,9 @@ import { ReportsComponent } from './pages/administrator/modules/reports/reports.
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-    }
+    },
   ],
   exports: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

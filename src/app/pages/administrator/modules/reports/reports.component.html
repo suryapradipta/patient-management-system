@@ -10,18 +10,17 @@
         </div>
       </div>
       <div class="mt-8 flex flex-col">
-
         <div class="mb-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-
           <div class="sm:col-span-1">
             <label
               for="fromDate"
               class="block text-sm font-medium text-gray-700"
-            >From Date</label
+              >From Date</label
             >
             <div class="mt-1">
               <input
-                [(ngModel)]="fromDate" (change)="filterAppointments()"
+                [(ngModel)]="fromDate"
+                (change)="filterAppointments()"
                 type="date"
                 name="fromDate"
                 id="fromDate"
@@ -30,16 +29,14 @@
             </div>
           </div>
 
-
           <div class="sm:col-span-1">
-            <label
-              for="toDate"
-              class="block text-sm font-medium text-gray-700"
-            >To Date</label
+            <label for="toDate" class="block text-sm font-medium text-gray-700"
+              >To Date</label
             >
             <div class="mt-1">
               <input
-                [(ngModel)]="toDate" (change)="filterAppointments()"
+                [(ngModel)]="toDate"
+                (change)="filterAppointments()"
                 type="date"
                 name="toDate"
                 id="toDate"
@@ -49,32 +46,34 @@
           </div>
         </div>
 
-        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
-               class="row-border hover">
+        <table
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+          class="row-border hover stripe"
+        >
           <thead>
-          <tr>
-            <th>Date</th>
-            <th>Status</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Contact</th>
-          </tr>
+            <tr>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Contact</th>
+            </tr>
           </thead>
           <tbody>
-          <ng-container *ngFor="let appointment of filteredAppointments">
-            <tr *ngIf="appointment.status === 'Scheduled'">
-              <td>{{ appointment.date| date }}</td>
-              <td>{{ appointment.status }}</td>
-              <td>{{ appointment.patientId.name }}</td>
-              <td>{{ appointment.patientId.address }}</td>
-              <td>{{ appointment.patientId.contactInfo }}</td>
-            </tr>
-          </ng-container>
+            <ng-container *ngFor="let appointment of filteredAppointments">
+              <tr *ngIf="appointment.status === 'Scheduled'">
+                <td>{{ appointment.date | date }}</td>
+                <td>{{ appointment.status }}</td>
+                <td>{{ appointment.patientId.name }}</td>
+                <td>{{ appointment.patientId.address }}</td>
+                <td>{{ appointment.patientId.contactInfo }}</td>
+              </tr>
+            </ng-container>
           </tbody>
         </table>
-
       </div>
-
     </div>
   </div>
 </div>

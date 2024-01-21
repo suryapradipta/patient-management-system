@@ -1,29 +1,31 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import {
   NotificationService,
-  PatientService
-} from "../../../../shared/services";
-import {Patient} from "../../../../shared/models";
-import {Subject} from 'rxjs';
-import {Router} from "@angular/router";
-import Swal from "sweetalert2";
+  PatientService,
+} from '../../../../shared/services';
+import { Patient } from '../../../../shared/models';
+import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-manage-patient',
   templateUrl: './manage-patient.component.html',
-  styleUrls: ['./manage-patient.component.css']
+  styleUrls: ['./manage-patient.component.css'],
 })
-export class ManagePatientComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ManagePatientComponent
+  implements OnInit, AfterViewInit, OnDestroy
+{
   patients: Patient[] = [];
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
-  constructor(private patientService: PatientService,
-              private router: Router,
-              private alert: NotificationService,) {
-  }
-
+  constructor(
+    private patientService: PatientService,
+    private router: Router,
+    private alert: NotificationService
+  ) {}
 
   ngOnInit(): void {
     this.getPatients();
@@ -67,7 +69,8 @@ export class ManagePatientComponent implements OnInit, AfterViewInit, OnDestroy 
           'Patient have been successfully deleted.',
           'success'
         );
-        this.patientService.deletePatient(id).subscribe(() => {
+        this.patientService.deletePatient(id).subscribe(
+          () => {
             this.dtTrigger.unsubscribe();
             this.getPatients();
           },
@@ -85,15 +88,15 @@ export class ManagePatientComponent implements OnInit, AfterViewInit, OnDestroy 
     });
   }
 
-  addPatient() {
+  addPatient(): void {
     this.router.navigate(['administrator/patients/add']);
   }
 
-  editPatient(patient: Patient) {
+  editPatient(patient: Patient): void {
     this.router.navigate(['administrator/patients/edit', patient._id]);
   }
 
-  viewPatient(patient: Patient) {
+  viewPatient(patient: Patient): void {
     this.router.navigate(['administrator/patients/view', patient._id]);
   }
 }

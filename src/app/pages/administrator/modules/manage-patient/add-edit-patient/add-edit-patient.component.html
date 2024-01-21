@@ -13,19 +13,17 @@
                 {{ patient._id ? 'Edit' : 'Add' }} Patient
               </h3>
               <p class="mt-1 text-sm text-gray-500">
-                Ensure that the information is accurate and up-to-date
-                before
+                Ensure that the information is accurate and up-to-date before
                 saving.
               </p>
             </div>
 
-            <div
-              class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+            <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
               <div class="sm:col-span-3">
                 <label
                   for="name"
                   class="block text-sm font-medium text-gray-700"
-                >Name</label
+                  >Name</label
                 >
                 <div class="mt-1">
                   <input
@@ -42,9 +40,7 @@
                   *ngIf="name.invalid && (name.dirty || name.touched)"
                   class="mt-2 text-sm text-red-600"
                 >
-                  <div *ngIf="name.errors?.['required']">Name is
-                    required.
-                  </div>
+                  <div *ngIf="name.errors?.['required']">Name is required.</div>
                 </div>
               </div>
 
@@ -52,7 +48,7 @@
                 <label
                   for="dateOfBirth"
                   class="block text-sm font-medium text-gray-700"
-                >Date of Birth</label
+                  >Date of Birth</label
                 >
                 <div class="mt-1">
                   <input
@@ -66,21 +62,23 @@
                   />
                 </div>
                 <div
-                  *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)"
+                  *ngIf="
+                    dateOfBirth.invalid &&
+                    (dateOfBirth.dirty || dateOfBirth.touched)
+                  "
                   class="mt-2 text-sm text-red-600"
                 >
-                  <div *ngIf="dateOfBirth.errors?.['required']">Date of
-                    Birth is required.
+                  <div *ngIf="dateOfBirth.errors?.['required']">
+                    Date of Birth is required.
                   </div>
                 </div>
               </div>
-
 
               <div class="sm:col-span-6">
                 <label
                   for="address"
                   class="block text-sm font-medium text-gray-700"
-                >Address</label
+                  >Address</label
                 >
                 <div class="mt-1">
                   <textarea
@@ -94,10 +92,7 @@
                   ></textarea>
                 </div>
                 <div
-                  *ngIf="
-                    address.invalid &&
-                    (address.dirty || address.touched)
-                  "
+                  *ngIf="address.invalid && (address.dirty || address.touched)"
                   class="mt-2 text-sm text-red-600"
                 >
                   <div *ngIf="address.errors?.['required']">
@@ -110,7 +105,7 @@
                 <label
                   for="gender"
                   class="block text-sm font-medium text-gray-700"
-                >Gender</label
+                  >Gender</label
                 >
                 <div class="mt-1">
                   <select
@@ -128,9 +123,7 @@
                   </select>
                 </div>
                 <div
-                  *ngIf="
-                    gender.invalid && (gender.dirty || gender.touched)
-                  "
+                  *ngIf="gender.invalid && (gender.dirty || gender.touched)"
                   class="mt-2 text-sm text-red-600"
                 >
                   <div *ngIf="gender.errors?.['required']">
@@ -143,7 +136,7 @@
                 <label
                   for="contactInfo"
                   class="block text-sm font-medium text-gray-700"
-                >Contact Information</label
+                  >Contact Information</label
                 >
                 <div class="mt-1">
                   <input
@@ -157,16 +150,17 @@
                   />
                 </div>
                 <div
-                  *ngIf="contactInfo.invalid && (contactInfo.dirty || contactInfo.touched)"
+                  *ngIf="
+                    contactInfo.invalid &&
+                    (contactInfo.dirty || contactInfo.touched)
+                  "
                   class="mt-2 text-sm text-red-600"
                 >
-                  <div *ngIf="contactInfo.errors?.['required']">Contact
-                    information is required.
+                  <div *ngIf="contactInfo.errors?.['required']">
+                    Contact information is required.
                   </div>
                 </div>
               </div>
-
-
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-<app-desktop-navbar/>
+<app-desktop-navbar />
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
     <!-- Company Logo -->
@@ -22,7 +22,7 @@
         <label
           for="username"
           class="block text-sm font-medium leading-6 text-gray-900"
-        >Username
+          >Username
         </label>
 
         <div class="mt-2">
@@ -43,7 +43,8 @@
         <div
           *ngIf="
             loginForm.get('username').errors &&
-            (loginForm.get('username').dirty || loginForm.get('username').touched)
+            (loginForm.get('username').dirty ||
+              loginForm.get('username').touched)
           "
           class="mt-2 text-sm text-red-600 alert"
           id="username-error"
@@ -66,14 +67,14 @@
           <label
             for="password"
             class="block text-sm font-medium leading-6 text-gray-900"
-          >Password</label
+            >Password</label
           >
 
           <div class="text-sm">
             <a
               href="#"
               class="font-semibold text-indigo-600 hover:text-indigo-500"
-            >Forgot password?</a
+              >Forgot password?</a
             >
           </div>
         </div>
@@ -97,7 +98,8 @@
         <div
           *ngIf="
             loginForm.get('password').errors &&
-            (loginForm.get('password').dirty || loginForm.get('password').touched)
+            (loginForm.get('password').dirty ||
+              loginForm.get('password').touched)
           "
           class="mt-2 text-sm text-red-600 alert"
           id="password-error"
@@ -128,9 +130,8 @@
     <!-- Sign-up Link -->
     <p class="mt-10 text-center text-sm text-gray-500">
       Not a member?
-      <a
-        class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-      >Sign up</a
+      <a class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+        >Sign up</a
       >
     </p>
   </div>

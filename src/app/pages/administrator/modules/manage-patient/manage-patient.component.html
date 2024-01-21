@@ -5,11 +5,11 @@
         <div class="sm:flex-auto">
           <h1 class="text-xl font-semibold text-gray-900">Patients</h1>
           <p class="mt-2 text-sm text-gray-700">
-            A list of all the patients in your database including their credentials
+            A list of all the patients in your database including their
+            credentials
           </p>
         </div>
         <div class="m7-4 sm:mt-0 sm:ml-16 sm:flex-none">
-
           <button
             (click)="addPatient()"
             type="button"
@@ -20,47 +20,58 @@
         </div>
       </div>
       <div class="mt-8 flex flex-col">
-        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
-               class="row-border hover">
+        <table
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+          class="row-border hover stripe"
+        >
           <thead>
-          <tr>
-            <th>Patient ID</th>
-            <th>Name</th>
-            <th>DOB</th>
-            <th>Gender</th>
-            <th>Address</th>
-            <th>Contact</th>
-                <th>Actions</th>
-          </tr>
+            <tr>
+              <th>Patient ID</th>
+              <th>Name</th>
+              <th>DOB</th>
+              <th>Gender</th>
+              <th>Address</th>
+              <th>Contact</th>
+              <th>Actions</th>
+            </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let patient of patients">
-            <td>{{ patient.patientId }}</td>
-            <td>{{ patient.name }}</td>
-            <td>{{ patient.dateOfBirth | date }}</td>
-            <td>{{ patient.gender }}</td>
-            <td>{{ patient.address }}</td>
-            <td>{{ patient.contactInfo }}</td>
-                <td>
-                  <button
-                    type="button"
-                    class="inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
-                    (click)="viewPatient(patient)">View</button>
-                  <button
-                    type="button"
-                    class="mx-2 inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
-                    (click)="editPatient(patient)">Edit</button>
-                  <button
-                    type="button"
-                    class=" inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
-                    (click)="deletePatient(patient._id)">Delete</button>
-                </td>
-          </tr>
+            <tr *ngFor="let patient of patients">
+              <td>{{ patient.patientId }}</td>
+              <td>{{ patient.name }}</td>
+              <td>{{ patient.dateOfBirth | date }}</td>
+              <td>{{ patient.gender }}</td>
+              <td>{{ patient.address }}</td>
+              <td>{{ patient.contactInfo }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
+                  (click)="viewPatient(patient)"
+                >
+                  View
+                </button>
+                <button
+                  type="button"
+                  class="mx-2 inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
+                  (click)="editPatient(patient)"
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  class="inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
+                  (click)="deletePatient(patient._id)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
           </tbody>
         </table>
-
       </div>
-
     </div>
   </div>
 </div>

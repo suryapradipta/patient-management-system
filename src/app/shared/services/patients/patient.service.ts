@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Patient} from "../../models/patient.model";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Patient } from '../../models/patient.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PatientService {
   private apiUrl = 'http://localhost:3000/api/v1/patients';
@@ -30,5 +30,4 @@ export class PatientService {
   deletePatient(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
-
 }

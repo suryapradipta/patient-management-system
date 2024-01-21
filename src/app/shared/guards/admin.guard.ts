@@ -31,6 +31,6 @@ export class AdminGuard implements CanActivate {
   }
 
   private static isAdmin(user: any): boolean {
-    return user && (user.role === 'administrator');
+    return user && user.role === 'administrator';
   }
 }
